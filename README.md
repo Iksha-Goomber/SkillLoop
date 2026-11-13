@@ -1,118 +1,234 @@
-# SkillLoop — Campus Skill Exchange
+# SkillLoop – Campus Skill Exchange
 
-A student-to-student skill exchange platform built as an academic C++ OOP project. The **C++17 engine owns the domain model, matching rules, student records, and exchange workflow**. Streamlit is the browser-based presentation layer; Python analytics reads the same CSV data.
+SkillLoop is a platform where students can teach each other skills and learn new things from their classmates.
 
-## Technology
-- C++17: OOP domain model and business logic
-- Streamlit: browser UI
-- Python: UI adapter and analytics
-- CSV: lightweight persistent storage
-- g++: compile the C++ engine at first launch
+For example, a student who knows Python can teach another student who wants to learn Python. The platform helps students find suitable learning partners based on their skills, availability and learning preferences.
 
-## Run locally (Windows / macOS / Linux)
+The project uses C++ for its main working logic, Python for the interface and data analysis, and Streamlit to display the application.
 
-1. Install Python 3.10+ and a C++17 compiler (`g++`).
-2. Extract this folder and open a terminal in the project root.
-3. Create and activate a virtual environment (recommended):
+## Features
 
-   **Windows PowerShell**
-   ```powershell
-   py -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
-   **macOS / Linux**
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-4. Install Python packages and launch:
-   ```bash
-   python -m pip install -r requirements.txt
-   streamlit run app.py
-   ```
-5. Open the local URL printed by Streamlit (normally http://localhost:8501).
+- Students can view and manage their profiles.
+- Students can add skills they can teach.
+- Students can add skills they want to learn.
+- The platform finds students with matching skills.
+- Students can send, accept or decline exchange requests.
+- The application shows basic charts and analysis of student skills.
 
-The Python adapter compiles the C++ sources into `.build/` automatically on first launch. No Qt installation or CMake setup is required.
+## Technologies Used
 
+- **C++17:** Used for classes, student records and matching logic.
+- **Python:** Used to connect the C++ engine with the application and perform data analysis.
+- **Streamlit:** Used to create the application interface.
+- **Pandas:** Used to read and analyse student data.
+- **Matplotlib:** Used to create graphs.
+- **CSV:** Used to store student and exchange information.
+- **g++:** Used to compile the C++ code.
 
-## Windows compiler troubleshooting
+## How to Run the Project
 
-The Python adapter builds the C++ engine automatically. On Windows it writes the executable as
-`.build/skillloop_engine.exe` and invokes the compiler from the project directory using
-project-relative source paths. This avoids common MSYS2/MinGW path-conversion problems when
-Python launches `g++`.
+### 1. Install the required software
 
-If compilation fails, the app now displays the compiler name, exit code, command, and captured
-diagnostic output. To verify the engine independently, run:
+You need:
+- Python 3.10 or above
+- g++ compiler
+
+### 2. Open the project folder
+
+Extract the project folder and open a terminal inside it.
+
+### 3. Create a virtual environment (recommended)
+
+**For Windows PowerShell:**
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+**For macOS/Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 4. Install the required packages
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 5. Start the application
+
+```bash
+streamlit run app.py
+```
+
+After running the command, open the local link shown in your terminal. It is normally:
+
+`http://localhost:8501`
+
+The Python program automatically compiles the C++ code when the application runs for the first time.
+
+## Windows Compiler Help
+
+The project automatically builds the C++ program when needed.
+
+If you face a compilation error:
+
+1. Check whether g++ is installed.
+2. Open PowerShell and run:
+
+```powershell
+g++ --version
+```
+
+3. Run the tests to check whether the C++ engine is working:
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-The test suite compiles a temporary `engine.exe` and prints the full compiler diagnostic if
-that build fails. Make sure `g++ --version` works in the same terminal where you launch
-Streamlit. If you have multiple compiler installations, you can select one explicitly in
-PowerShell before launching:
+If you have more than one g++ installation, you can select one using:
 
 ```powershell
 $env:CXX = (Get-Command g++).Source
 python -m streamlit run app.py
 ```
 
-## Deploy on Streamlit Community Cloud
-1. Push the complete project folder to a GitHub repository.
-2. In Streamlit Community Cloud, create an app from that repository and select `app.py` as the entry point.
-3. Keep `packages.txt` at the repository root; it asks the Linux build image to install `g++`.
-4. Keep `requirements.txt` at the repository root.
-5. Deploy. The app compiles the C++ engine on its first startup.
+## Deploying the Project
 
-Cloud hosting is subject to the provider's current build-image policies and resource limits. Test the deployed URL after each deployment; a ZIP alone is not a hosted URL.
+You can also host SkillLoop using Streamlit Community Cloud.
 
-## Included sample accounts
-- S001 — Aman (Computer Science, Year 2)
-- S002 — Iksha (Computer Science, Year 2)
-- S003 — Riya (Information Technology, Year 3)
-- S004 — Kabir (Computer Science, Year 1)
+1. Upload the complete project to GitHub.
+2. Open Streamlit Community Cloud.
+3. Create a new app and connect your GitHub repository.
+4. Select `app.py` as the main file.
+5. Make sure `requirements.txt` and `packages.txt` are present in the main project folder.
+6. Deploy the application.
 
-Use the profile selector in the sidebar to switch demo identities. The Discover page demonstrates reciprocal matches. Requests can be accepted or declined by switching to the recipient profile.
+The `packages.txt` file is used to install g++ on the cloud system.
 
-## Project layout
+The application builds the C++ engine when it starts for the first time. Hosting depends on the platform's available resources and build settings.
+
+## Sample Student Accounts
+
+The project includes four sample student profiles:
+
+| Student ID | Name | Course | Year |
+|---|---|---|---|
+| S001 | Aman | Computer Science | 2 |
+| S002 | Iksha | Computer Science | 2 |
+| S003 | Riya | Information Technology | 3 |
+| S004 | Kabir | Computer Science | 1 |
+
+You can switch between these profiles using the profile selector in the sidebar.
+
+The Discover page shows students who have matching skills. You can also try sending exchange requests and accepting or declining them by switching to the other student's profile.
+
+## Project Folder Structure
+
 ```text
 SkillLoop/
-├── app.py                  # Streamlit interface
-├── engine.py               # Python-to-C++ subprocess adapter
-├── requirements.txt
-├── packages.txt            # g++ for Streamlit Cloud
-├── cpp_engine/             # C++ OOP engine
-│   └── src/main.cpp         # Classes, functions and program entry point
-├── data/                    # CSV persistence
-├── analytics/               # Standalone analytics script
-├── tests/                   # Automated C++ integration tests
-└── docs/                    # Architecture, algorithms, viva and report
+│
+├── app.py                  # Main Streamlit application
+├── engine.py               # Connects Python with C++
+├── requirements.txt        # Python packages
+├── packages.txt            # Packages needed for deployment
+│
+├── cpp_engine/
+│   └── src/main.cpp        # Main C++ code and classes
+│
+├── data/
+│   ├── students.csv        # Student information
+│   └── exchanges.csv       # Exchange request information
+│
+├── analytics/
+│   └── analyse.py          # Data analysis code
+│
+├── tests/                  # Project tests
+│
+└── docs/                   # Project documentation
 ```
 
-## Run tests
+## Running the Tests
+
+To check whether the project is working correctly, run:
+
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## C++ engine commands
-The engine is intentionally callable from the terminal for demonstration:
+This runs the available tests for the C++ engine and its features.
+
+## C++ Engine Commands
+
+The C++ program can also be run directly from the terminal.
+
+First, compile the program:
+
 ```bash
 g++ -std=c++17 -O2 cpp_engine/src/main.cpp -o skillloop_engine
+```
+
+Then you can use these commands:
+
+```bash
 ./skillloop_engine init data
 ./skillloop_engine students data
 ./skillloop_engine matches data S001
 ./skillloop_engine create_exchange data S001 S002 Python
 ./skillloop_engine exchanges data
 ```
-On Windows, use `skillloop_engine.exe` as the output filename and run it from PowerShell.
 
-## Academic note
-The matching method is a transparent **rule-based algorithm**, not machine learning or AI. C++ performs the reciprocal matching and score calculation. Python is used for the web interface and descriptive analytics only. Do not describe the project as an AI recommender.
+On Windows, use `skillloop_engine.exe` instead of `skillloop_engine`.
 
-## Known scope limits
-- Authentication is intentionally omitted; the sidebar profile selector is a classroom demo identity switcher, not secure login.
-- CSV storage is suitable for a small demonstration, not concurrent production use.
-- Student records are append/update CSV records; no password or sensitive account information is collected.
-- Availability and learning mode influence the score using simple exact/partial matching rules.
+## How the Matching System Works
+
+SkillLoop uses a rule-based matching system.
+
+It checks whether two students can help each other learn the skills they want. It also considers their availability and preferred learning method to calculate a match score.
+
+The project does not use Machine Learning or Artificial Intelligence. The matching and score calculation are handled by the C++ program.
+
+## Data Analysis
+
+The Python analytics module uses Pandas and Matplotlib to study the skills listed by students.
+
+It helps us understand:
+- Which skills students can teach.
+- Which skills students want to learn.
+- The difference between available skills and demanded skills.
+
+The results are saved as CSV files and graphs.
+
+## Limitations
+
+- The project does not have a complete login or authentication system.
+- The profile selector is used only to switch between sample student accounts.
+- CSV files are used for storing data, so the project is designed for a small demonstration.
+- The matching system uses simple rules instead of machine learning.
+- The project is not designed for many users making changes at the same time.
+
+## Future Improvements
+
+Some features that can be added in the future are:
+
+- A proper student login and registration system.
+- A database instead of CSV files.
+- Notifications for new exchange requests.
+- More advanced student matching.
+- Ratings and feedback after completing a skill exchange.
+
+## Team Members
+
+**Iksha**
+- Python-based data analysis using Pandas and Matplotlib.
+- C++ abstraction and inheritance.
+
+**Aman**
+- Streamlit frontend development.
+- C++ encapsulation and polymorphism.
+
+For detailed individual contributions, please refer to the project report.
