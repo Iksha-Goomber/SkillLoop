@@ -227,7 +227,7 @@ Some features that can be added in the future are:
 - Python-based data analysis using Pandas and Matplotlib.
 - C++ abstraction and inheritance.
 
-**Aman**
+**Aman Gemawat**
 - Streamlit frontend development.
 - C++ encapsulation and polymorphism.
 
