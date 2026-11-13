@@ -11,6 +11,7 @@ import engine
 st.set_page_config(page_title="SkillLoop — Exchange what you know", page_icon="✳", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 html, body, [class*="css"] { font-family:'DM Sans',sans-serif; }
@@ -19,7 +20,11 @@ html, body, [class*="css"] { font-family:'DM Sans',sans-serif; }
 [data-testid="stSidebar"] { background:#171725; }
 [data-testid="stSidebar"] * { color:#F5F4FF !important; }
 [data-testid="stSidebar"] [data-testid="stRadio"] label { padding:8px 10px; border-radius:10px; }
-h1,h2,h3 { font-family:'Manrope',sans-serif !important; letter-spacing:-.035em; color:#191925; }
+.stApp h1, .stApp h2, .stApp h3 {
+    font-family:'Manrope',sans-serif !important;
+    letter-spacing:-.035em;
+    color:#191925 !important;
+}
 .eyebrow { color:#7569D9; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:800; }
 .hero { background:linear-gradient(120deg,#24223C 0%,#51458D 100%); padding:30px 34px; border-radius:22px; color:white; margin:4px 0 22px 0; }
 .hero h1 { color:white !important; font-size:34px; margin:5px 0 8px 0; }
@@ -34,6 +39,50 @@ div.stButton > button { border-radius:11px; border:0; font-weight:700; padding:.
 .stTextInput input,.stSelectbox div[data-baseweb="select"],.stTextArea textarea { border-radius:10px; }
 hr { border-color:#ECEBF3; }
 [data-testid="stDataFrame"] { border:1px solid #ECEBF3; border-radius:12px; }
+
+/* Main page text */
+.stApp [data-testid="stMain"] {
+    color: #191925 !important;
+}
+
+.stApp [data-testid="stMain"] label {
+    color: #55546A !important;
+}
+
+/* Text inside cards */
+.surface,
+.surface b,
+.surface strong {
+    color: #191925 !important;
+}
+
+.surface .muted {
+    color: #77768A !important;
+}
+
+.surface .eyebrow {
+    color: #7569D9 !important;
+}
+
+/* Discover match cards and metrics */
+.stApp [data-testid="stMetricLabel"] {
+    color: #77768A !important;
+}
+
+.stApp [data-testid="stMetricValue"] {
+    color: #222137 !important;
+}
+
+/* Keep hero text white */
+.hero,
+.hero h1,
+.hero p {
+    color: white !important;
+}
+
+.hero p {
+    color: #E2DFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
