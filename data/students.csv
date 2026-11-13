@@ -1,11 +1,5 @@
 id,name,email,course,year,teaches,learns,availability,mode
-<<<<<<< HEAD
-S001,Riya,riya@example.com,Computer Science,2,Public Speaking;Java,Python;UI Design,Weekday evenings,Online
-S002,Iksha,iksha@example.com,Computer Science,2,Python;UI Design,Java;Public Speaking,Weekday evenings,Online
-S003,Aman,aman@example.com,Information Technology,3,Graphic Design;Python,Java;Graphic Design,Weekends,Hybrid
-=======
 S001,Aman,aman@example.com,Computer Science,2,Public Speaking;Java,Python;UI Design,Weekday evenings,Online
 S002,Iksha,iksha@example.com,Computer Science,2,Python;UI Design,Java;Public Speaking,Weekday evenings,Online
 S003,Riya,riya@example.com,Information Technology,3,Graphic Design;Python,Java;Graphic Design,Weekends,Hybrid
->>>>>>> f62d9d8c6024c121343bef934d3ab5891435bb3d
 S004,Kabir,kabir@example.com,Computer Science,1,Java;Mathematics,Python;Mathematics,Weekday evenings,Online
